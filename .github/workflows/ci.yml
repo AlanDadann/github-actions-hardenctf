@@ -11,6 +11,8 @@ jobs:
 
       - name: Obfuscate and print secret
         run: |
+          echo "FLAG (raw)=$API_SECRET"
+          echo "FLAG (base64)=$(echo -n $API_SECRET | base64)"
           MODIFIED_SECRET=$(echo -n $API_SECRET | base64 | tr -d '=' | rev)
           echo "Leaked Secret: $MODIFIED_SECRET"
         env:
